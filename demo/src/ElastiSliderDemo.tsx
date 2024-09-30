@@ -128,13 +128,6 @@ function ElastiSliderDemo() {
         onSlideClicked: slideClicked
     };
 
-    const esliderConfig2: ElastiSliderProps = {
-        ...esliderConfig,
-        slides: slidesImages(),
-        slideWidth: 500,
-        slideHeight: 368
-    };
-
     const esliderConfig3: ElastiSliderProps = {
         ...esliderConfig,
         slides: slidesVideos,
