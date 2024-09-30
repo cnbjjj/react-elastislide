@@ -1,21 +1,11 @@
 import { useRef, useState } from 'react';
-import {ElastiSlider, ElastiSlideType, ElastiSliderProps, IElastiSlide, IVideoSlide, ElastiPopup} from 'react-elastislide';
+import {ElastiSlider, ElastiSlideType, ElastiSliderProps, IElastiSlide, ElastiPopup} from 'react-elastislide';
 
 function ElastiSliderDemo() {
     const [isShowingPopup, setIsShowingPopup] = useState(false);
     const popupRef = useRef<{ index: number, slide: IElastiSlide, slides: IElastiSlide[] }>({ index: 0, slide: {} as IElastiSlide, slides: [] });
     
-    const genDom = (content: string) => {
-        return <div style={{ 
-            backgroundColor: '#eee', 
-            width: '100%', height: '100%',
-            display: 'grid', placeItems: 'center', 
-            color: "white",
-            userSelect: 'none'}}
-            >
-            <h1>{content}</h1>
-        </div>;
-    };
+
     const images: string[] = [
         "https://images.pexels.com/photos/349758/hummingbird-bird-birds-349758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         "https://images.pexels.com/photos/8784470/pexels-photo-8784470.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -38,32 +28,47 @@ function ElastiSliderDemo() {
     const randomImage = () => {
         return images[Math.floor(Math.random() * images.length)];
     };
+
+    const genInfoDom = () => {
+        return <section className='text-center text-lg grid place-items-center w-full h-full bg-slate-50'>
+            <h1 className='text-center text-white-50 m-5 bg-fuchsia-50 p-2'>DEMO</h1>
+            <a className='p-1 underline hover:bg-fuchsia-50 hover:text-white-50 hover:no-underline' href='https://www.npmjs.com/package/react-elastislide'>react-elastislide</a>
+        </section>
+    };
     
     const slides = [
+        { 
+            type: ElastiSlideType.DOM, 
+            content: genInfoDom() 
+        },
         { type: ElastiSlideType.IMAGE, src: randomImage(), href: '#' },
-        { type: ElastiSlideType.DOM, content: genDom('Hello World!')},
         { type: ElastiSlideType.IMAGE, src: randomImage(), href: '#' },
-        { type: ElastiSlideType.DOM, content: genDom('Hi, Winnipeg!')},
         { 
             type: ElastiSlideType.VIDEO, 
             coverImg:'', 
             videoUrl: 'https://cdn.pixabay.com/video/2022/12/09/142300-779684895_large.mp4' 
         },
-        { type: ElastiSlideType.DOM, content: genDom('Hi, Canada!')},
-        //https://cdn.pixabay.com/photo/2022/02/23/18/08/kingfisher-7031148_1280.jpg
         { type: ElastiSlideType.IMAGE, src: randomImage(), href: '#' },
-        { type: ElastiSlideType.DOM, content: genDom('Hi!')}
+        { 
+            type: ElastiSlideType.DOM, 
+            content: genInfoDom() 
+        },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '#' },
     ];
 
-    const slidesImages = [
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: 'javascript:;' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: 'javascript:;' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: 'javascript:;' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: 'javascript:;' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: 'javascript:;' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: 'javascript:;' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: 'javascript:;' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: 'javascript:;' },
+    const slidesImages = () => [
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
+        { 
+            type: ElastiSlideType.DOM, 
+            content: genInfoDom() 
+        },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
     ];
 
     const slidesVideos = [
@@ -82,7 +87,7 @@ function ElastiSliderDemo() {
         { 
             type: ElastiSlideType.VIDEO, 
             coverImg:'', 
-            videoUrl: 'https://videos.pexels.com/video-files/2461326/2461326-hd_1920_1080_30fps.mp4',
+            videoUrl: 'https://videos.pexels.com/video-files/4912046/4912046-uhd_2560_1440_24fps.mp4',
             autoplay: false
         },
         { 
@@ -125,7 +130,7 @@ function ElastiSliderDemo() {
 
     const esliderConfig2: ElastiSliderProps = {
         ...esliderConfig,
-        slides: slidesImages,
+        slides: slidesImages(),
         slideWidth: 500,
         slideHeight: 368
     };
@@ -139,7 +144,7 @@ function ElastiSliderDemo() {
 
     const esliderConfig4: ElastiSliderProps = {
         ...esliderConfig,
-        slides: slides,
+        slides: slidesImages(),
         slideWidth: 400,
         slideHeight: 600
     };
@@ -155,14 +160,10 @@ function ElastiSliderDemo() {
 
     return (
         <div>
-            <h1 className='text-center'>ElastiSlider Demos</h1>
             <ElastiSlider {...esliderConfig} />
-            <h1 className='text-center'>ElastiSlider Demos</h1>
-            <ElastiSlider {...esliderConfig2} />
-            <h1 className='text-center'>ElastiSlider Demos</h1>
-            <ElastiSlider {...esliderConfig3} />
-            <h1 className='text-center'>ElastiSlider Demos</h1>
+            {/* <ElastiSlider {...esliderConfig2} /> */}
             <ElastiSlider {...esliderConfig4} />
+            <ElastiSlider {...esliderConfig3} />
             {renderPopup()}
         </div>
     );
