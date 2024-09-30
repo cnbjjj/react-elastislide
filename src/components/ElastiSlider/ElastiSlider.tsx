@@ -115,7 +115,6 @@ function ElastiSlider({
     };
 
     const slideClicked = (index: number) => {
-        console.log('slideClicked', index);
         onSlideClicked && onSlideClicked(index, slides[index], slides);
     };
 
