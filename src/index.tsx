@@ -1,0 +1,2 @@
+export { ElastiSlider, ElastiSliderProps, ElastiSlideType, ElastiSliderClassNames, IElastiSlide, IVideoSlide, IImageSlide, IDOMSlide } from "./components/ElastiSlider";
+export { ElastiPopup, ElastiPopupProps } from "./components/ElastiPopup";

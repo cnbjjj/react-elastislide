@@ -1,0 +1,47 @@
+{
+  "name": "react-elastislide",
+  "version": "0.0.1",
+  "description": "A customizable React slider component supporting images, videos, or HTML content with smooth elastic scrolling animations and flexible slide types.",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "tsc-watch --onSuccess \"npm run build\"",
+    "build": "npm run build:esm && npm run build:cjs && npm run copy-assets",
+    "build:esm": "tsc --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "copy-assets": "copyfiles -u 1 src/assets/**/* dist/esm/ && copyfiles -u 1 src/assets/**/* dist/cjs/ && copyfiles -u 1 src/assets/**/* dist/types/ && copyfiles -u 1 src/components/**/assets/**/* dist/esm/ && copyfiles -u 1 src/components/**/assets/**/* dist/cjs/ && copyfiles -u 1 src/components/**/assets/**/* dist/types/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnbjjj/react-elastislide.git"
+  },
+  "keywords": [
+    "react",
+    "slider"
+  ],
+  "author": "JJ",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/cnbjjj/react-elastislide/issues"
+  },
+  "homepage": "https://github.com/cnbjjj/react-elastislide#readme",
+  "devDependencies": {
+    "@types/react": "^18.3.8",
+    "copyfiles": "^2.4.1",
+    "tsc-watch": "^6.2.0",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tslib": "^2.7.0"
+  }
+}
