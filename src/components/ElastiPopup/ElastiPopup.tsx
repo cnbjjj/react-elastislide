@@ -13,6 +13,7 @@ export interface ElastiPopupProps {
     btnClose?: any;
     onShow?: () => void;
     onHide?: () => void;
+    onSlideChanged?: (index: number, slide: IElastiSlide, slides: IElastiSlide[]) => void;
     classNames?: {
         container?: string;
         slider?: string;
@@ -64,6 +65,11 @@ function ElastiPopup(props: ElastiPopupProps) {
             parent.style.width = `${activeSlide.offsetWidth}px`;
             parent.style.height = `${activeSlide.offsetHeight}px`;
         }
+        props.onSlideChanged && props.onSlideChanged(currentSlide, slides[currentSlide], slides);
+        sliderRef.current?.querySelectorAll('video').forEach((video) => {
+            const videoElement = video as HTMLVideoElement;
+            videoElement.pause();
+        });
     }, [currentSlide]);
 
     const nextSlide = () => {

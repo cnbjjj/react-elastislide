@@ -28,6 +28,7 @@ npm i react-elastislide
 - `onSlideClicked?: (index: number, slide: IElastiSlide, slides: IElastiSlide[]) => void` – Callback triggered when a slide is clicked (optional).
 - `onFirstScreen?: (slides: IElastiSlide[]) => void` – Callback triggered when the first screen is visible (optional).
 - `onLastScreen?: (slides: IElastiSlide[]) => void` – Callback triggered when the last screen is visible (optional).
+- `onScreenChanged?: (currentStep:number,totalSteps:number,slides: IElastiSlide[]) => void` - Callback triggered when screen is changed (optional).
 
 ### Example
 

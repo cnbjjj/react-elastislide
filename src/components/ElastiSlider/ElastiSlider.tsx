@@ -19,7 +19,8 @@ function ElastiSlider({
     classNames,
     onSlideClicked,
     onFirstScreen,
-    onLastScreen
+    onLastScreen,
+    onScreenChanged
 }: ElastiSliderProps) {
     slides = slides || [];
     slideWidth = slideWidth || 361;
@@ -33,6 +34,7 @@ function ElastiSlider({
     onSlideClicked = onSlideClicked || undefined;
     onFirstScreen = onFirstScreen || undefined;
     onLastScreen = onLastScreen || undefined;
+    onScreenChanged = onScreenChanged || undefined;
     classNames = {
         container: 'eslider-container container',
         arrows: 'eslider-arrows container',
@@ -71,8 +73,8 @@ function ElastiSlider({
 
     useEffect(() => {
         // console.log('currentStep', currentStep, "totalSteps", totalSteps);
-        const slides = sliderRef.current?.querySelectorAll('.eslide');
-        slides?.forEach((slide, index) => {
+        const slidesElts = sliderRef.current?.querySelectorAll('.eslide');
+        slidesElts?.forEach((slide, index) => {
             const position = (index - currentStep) * (slideWidth + gap);
             const elt = slide as HTMLElement;
             const delay = (directionRef.current === 1 ? index : totalSteps - index) * animDelay || 0.075;
@@ -82,6 +84,11 @@ function ElastiSlider({
                 left: ${position}px`
             );
         });
+        onScreenChanged && onScreenChanged(currentStep, totalSteps, slides);
+        if (currentStep === 0)
+            onFirstScreen && onFirstScreen(slides);
+        if (currentStep === totalSteps)
+            onLastScreen && onLastScreen(slides);
     }, [currentStep]);
 
     const preventFastClick = () => {

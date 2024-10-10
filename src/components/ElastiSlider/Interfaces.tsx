@@ -27,5 +27,6 @@ export interface ElastiSliderProps {
     classNames?: ElastiSliderClassNames // class names
     onSlideClicked?: (index:number, slide: IElastiSlide, slides:IElastiSlide[]) => void, // on slide clicked
     onFirstScreen?: (slides:IElastiSlide[]) => void, // on first screen
-    onLastScreen?: (slides:IElastiSlide[]) => void // on last screen
+    onLastScreen?: (slides:IElastiSlide[]) => void, // on last screen
+    onScreenChanged?: (step:number, steps: number, slides:IElastiSlide[]) => void // on screen changed
 }
