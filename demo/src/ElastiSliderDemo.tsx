@@ -116,7 +116,6 @@ function ElastiSliderDemo() {
                         width={800}
                         onShow={() => { }}
                         onHide={() => setIsShowingPopup(false)}
-                        onSlideChanged={(index, slide, slides) => {} }
                     />
                 )
             }
