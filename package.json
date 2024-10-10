@@ -1,6 +1,6 @@
 {
   "name": "react-elastislide",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "A customizable React slider component supporting images, videos, or HTML content with smooth elastic scrolling animations and flexible slide types.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

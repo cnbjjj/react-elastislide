@@ -1,5 +1,4 @@
 # react-elastislide
-[![react-elastislide Screenshot](screenshot.png)]((https://react-elastislide.vercel.app))
 
 **react-elastislide** is a customizable React slider component that supports images, videos, or HTML content with smooth elastic scrolling animations and flexible slide types.
 
@@ -63,8 +62,5 @@ const esliderConfig: ElastiSliderProps = {
 
 <ElastiSlider {...esliderConfig} />
 ```
-
-## Demo
-**[Click to view](https://react-elastislide.vercel.app)**
 
 ---
