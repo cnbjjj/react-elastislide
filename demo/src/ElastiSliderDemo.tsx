@@ -34,29 +34,58 @@ function ElastiSliderDemo() {
 
     const slides = useMemo(() => [
         { type: ElastiSlideType.DOM, content: genInfoDom() },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '#' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '#' },
-        { type: ElastiSlideType.VIDEO, coverImg: '', videoUrl: 'https://cdn.pixabay.com/video/2022/12/09/142300-779684895_large.mp4' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '#' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '#', alt: 'test' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '#', alt: 'test' },
+        { type: ElastiSlideType.VIDEO, coverImg: '', videoUrl: 'https://cdn.pixabay.com/video/2022/12/09/142300-779684895_large.mp4', autoplay: false, loop:false, muted:true },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '#', alt: 'test' },
         { type: ElastiSlideType.DOM, content: genInfoDom() },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '#' }
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '#', alt: 'test' },
     ], [images]);
 
     const slidesImages = useMemo(() => [
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '', alt: 'test' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '', alt: 'test' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '', alt: 'test' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '', alt: 'test' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '', alt: 'test' },
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '', alt: 'test' },
         { type: ElastiSlideType.DOM, content: genInfoDom() },
-        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '' }
+        { type: ElastiSlideType.IMAGE, src: randomImage(), href: '', alt: 'test' }
     ], [images]);
 
     const slidesVideos = useMemo(() => [
-        { type: ElastiSlideType.VIDEO, coverImg: '', videoUrl: 'https://videos.pexels.com/video-files/2402370/2402370-hd_1920_1080_24fps.mp4', autoplay: false },
-        { type: ElastiSlideType.VIDEO, coverImg: '', videoUrl: 'https://cdn.pixabay.com/video/2022/12/09/142300-779684895_large.mp4', autoplay: false },
-        { type: ElastiSlideType.VIDEO, coverImg: '', videoUrl: 'https://videos.pexels.com/video-files/4912046/4912046-uhd_2560_1440_24fps.mp4', autoplay: false },
-        { type: ElastiSlideType.VIDEO, coverImg: '', videoUrl: 'https://videos.pexels.com/video-files/4793475/4793475-hd_1280_720_60fps.mp4', autoplay: true }
+        { 
+            type: ElastiSlideType.VIDEO, 
+            coverImg: '', 
+            videoUrl: 'https://videos.pexels.com/video-files/2402370/2402370-hd_1920_1080_24fps.mp4', 
+            autoplay: false, 
+            loop: true, 
+            muted: true 
+        },
+        { 
+            type: ElastiSlideType.VIDEO, 
+            coverImg: '', 
+            videoUrl: 'https://cdn.pixabay.com/video/2022/12/09/142300-779684895_large.mp4', 
+            autoplay: false, 
+            loop: false, 
+            muted: true 
+        },
+        { 
+            type: ElastiSlideType.VIDEO, 
+            coverImg: '', 
+            videoUrl: 'https://videos.pexels.com/video-files/4912046/4912046-uhd_2560_1440_24fps.mp4', 
+            autoplay: false, 
+            loop: true, 
+            muted: true 
+        },
+        { 
+            type: ElastiSlideType.VIDEO, 
+            coverImg: '', 
+            videoUrl: 'https://videos.pexels.com/video-files/4793475/4793475-hd_1280_720_60fps.mp4', 
+            autoplay: true, 
+            loop: true, 
+            muted: true 
+        },
     ], []);
 
     const slideClicked = useCallback((index: number, slide: IElastiSlide, slides: IElastiSlide[]) => {
@@ -85,7 +114,10 @@ function ElastiSliderDemo() {
             slide: 'eslide',
             slideContent: 'eslide-content'
         },
-        onSlideClicked: slideClicked
+        onSlideClicked: slideClicked,
+        onScreenChanged: (current: number, total: number) => {
+            console.log(`Current: ${current}, Total: ${total}`);
+        }
     };
 
     const esliderConfig3: ElastiSliderProps = {

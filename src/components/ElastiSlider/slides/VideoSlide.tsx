@@ -3,7 +3,7 @@ import { IVideoSlide } from "./Interfaces";
 import React, { useEffect, useRef } from 'react';
 
 export default function VideoSlide(props: IVideoSlide) {
-    const { coverImg, videoUrl, playButton, autoplay } = props;
+    const { coverImg, videoUrl, playButton, autoplay, ...attributes } = props;
     const videoRef = useRef<HTMLVideoElement>(null);
     const playButtonRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
@@ -25,6 +25,6 @@ export default function VideoSlide(props: IVideoSlide) {
             <div className="video-playbutton" ref={playButtonRef}>
                 {playButton && playButton || <PlayButton className="video-playbutton-default" />}
             </div>
-            <video ref={videoRef} src={videoUrl} poster={coverImg} {...(autoplay ? { autoPlay: true } : {})} loop muted />
+            <video ref={videoRef} src={videoUrl} poster={coverImg} {...(autoplay ? { autoPlay: true } : {})} {...attributes} />
         </div>);
 }
