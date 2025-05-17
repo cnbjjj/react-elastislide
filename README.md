@@ -1,4 +1,5 @@
-# react-elastislide
+# react-elastislide [![npm version](https://img.shields.io/npm/v/react-elastislide.svg)](https://www.npmjs.com/package/react-elastislide)
+
 [![react-elastislide Screenshot](screenshot.png)]((https://react-elastislide.vercel.app))
 
 **react-elastislide** is a customizable React slider component that supports images, videos, or HTML content with smooth elastic scrolling animations and flexible slide types.
